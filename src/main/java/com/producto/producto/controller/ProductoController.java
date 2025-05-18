@@ -19,6 +19,7 @@ import com.producto.producto.model.Producto;
 import com.producto.producto.model.dto.ProductoDto;
 import com.producto.producto.service.ProductoService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,6 +30,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @PostMapping
+    @Operation(summary = "Este endpoint permite agregar productos")
     public ResponseEntity<String> crearProducto(@Valid @RequestBody Producto producto) {
         productoService.crearProducto(producto);
         return ResponseEntity.ok("Producto creado exitosamente");
@@ -100,7 +102,7 @@ public class ProductoController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/obtenerProducto/{IdProducto}")
+    @GetMapping("/obtenerProductoDto/{IdProducto}")
     public ResponseEntity<ProductoDto> obtenerProductoDto(@PathVariable Long IdProducto) {
         ProductoDto productoDto = productoService.obtenerProductoPorId(IdProducto);
         if (productoDto != null) {
@@ -108,4 +110,6 @@ public class ProductoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    
 }

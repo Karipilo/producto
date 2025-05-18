@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Producto {
 
     private Long idProducto;
+    
     @NotNull
     @Size(max = 100, message = "El nombre no puede tener más de 100 caracteres")
     private String nombre;
