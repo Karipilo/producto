@@ -13,6 +13,5 @@ public class ProductoDto {
     private String nombre;
     private Double precio;
     private Integer stock;
-    private String tipo;
-    private String material;
+    
 }

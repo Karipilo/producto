@@ -100,7 +100,7 @@ public class ProductoService {
             ProductoDto nuevoProducto = new ProductoDto();
             nuevoProducto.setNombre(producto.getNombre());
             nuevoProducto.setPrecio(producto.getPrecio());
-            nuevoProducto.setTipo(producto.getTipo());
+            nuevoProducto.setStock(producto.getStock());
 
             return nuevoProducto;
         } catch (Exception e) {

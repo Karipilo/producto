@@ -36,6 +36,7 @@ public class ProductoController {
         return ResponseEntity.ok("Producto creado exitosamente");
     }
 
+    
     @GetMapping("/{nombreProducto}")
     public ResponseEntity<Producto> obtenerProducto(@PathVariable String nombreProducto) {
         Producto producto = productoService.obtenerProducto(nombreProducto);
@@ -51,30 +52,7 @@ public class ProductoController {
         return ResponseEntity.ok(productos);
     }
 
-    /*
-    ! Método que no estaba funcionando
-    @PutMapping("/{nombreProducto}")
-    public ResponseEntity<?> actualizarProducto(@PathVariable String nombreProducto, @Valid @RequestBody Producto producto) {
-        try {
-            Producto productoExistente = productoService.obtenerProducto(nombreProducto);
-            if (productoExistente == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("mensaje", "Producto no encontrado"));
-            }
-
-            productoExistente.setPrecio(producto.getPrecio());
-            productoExistente.setStock(producto.getStock());
-            productoExistente.setTipo(producto.getTipo());
-            productoExistente.setMaterial(producto.getMaterial());
-
-            productoService.crearProducto(productoExistente);  // Actualiza el producto
-
-            return ResponseEntity.ok(Map.of("mensaje", "Producto actualizado exitosamente"));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("mensaje", "Error al actualizar el producto"));
-        }
-    } */
+    
     @PutMapping("/{nombreProducto}")
     public ResponseEntity<?> actualizarProducto(@PathVariable String nombreProducto, @Valid @RequestBody Producto producto) {
         try {
