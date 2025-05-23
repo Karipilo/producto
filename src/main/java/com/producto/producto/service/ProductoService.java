@@ -86,8 +86,7 @@ public class ProductoService {
                 entity.getPrecio(),
                 entity.getStock(),
                 entity.getTipo(),
-                entity.getMaterial()
-        );
+                entity.getMaterial());
     }
 
     public ProductoDto obtenerProductoPorId(Long id) {
@@ -98,6 +97,7 @@ public class ProductoService {
             }
 
             ProductoDto nuevoProducto = new ProductoDto();
+            nuevoProducto.setIdProducto(producto.getIdProducto());
             nuevoProducto.setNombre(producto.getNombre());
             nuevoProducto.setPrecio(producto.getPrecio());
             nuevoProducto.setStock(producto.getStock());
