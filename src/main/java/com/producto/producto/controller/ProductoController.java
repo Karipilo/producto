@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("api/v1/productos")
 public class ProductoController {
 
     @Autowired
@@ -36,7 +36,6 @@ public class ProductoController {
         return ResponseEntity.ok("Producto creado exitosamente");
     }
 
-    
     @GetMapping("/{nombreProducto}")
     public ResponseEntity<Producto> obtenerProducto(@PathVariable String nombreProducto) {
         Producto producto = productoService.obtenerProducto(nombreProducto);
@@ -52,9 +51,9 @@ public class ProductoController {
         return ResponseEntity.ok(productos);
     }
 
-    
     @PutMapping("/{nombreProducto}")
-    public ResponseEntity<?> actualizarProducto(@PathVariable String nombreProducto, @Valid @RequestBody Producto producto) {
+    public ResponseEntity<?> actualizarProducto(@PathVariable String nombreProducto,
+            @Valid @RequestBody Producto producto) {
         try {
             String resultado = productoService.actualizarProducto(nombreProducto, producto);
 
@@ -89,5 +88,4 @@ public class ProductoController {
         return ResponseEntity.notFound().build();
     }
 
-    
 }
