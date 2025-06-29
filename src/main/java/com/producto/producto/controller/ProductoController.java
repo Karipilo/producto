@@ -37,6 +37,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{nombreProducto}")
+    @Operation(summary = "Este endpoint permite obtener un producto por su nombre")
     public ResponseEntity<Producto> obtenerProducto(@PathVariable String nombreProducto) {
         Producto producto = productoService.obtenerProducto(nombreProducto);
         if (producto != null) {
