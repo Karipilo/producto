@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Obtener codigo y chequear repo
       uses: actions/checkout@v2
 
@@ -17,6 +16,9 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+
+    - name: Dar permisos a mvnw
+      run: chmod +x ./mvnw
 
     - name: test code java spring boot
       run: ./mvnw clean test
