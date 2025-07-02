@@ -32,8 +32,18 @@ public class ProductoController {
     @PostMapping
     @Operation(summary = "Este endpoint permite agregar productos")
     public ResponseEntity<String> crearProducto(@Valid @RequestBody Producto producto) {
-        productoService.crearProducto(producto);
-        return ResponseEntity.ok("Producto creado exitosamente");
+        String resultado = productoService.crearProducto(producto);
+
+        // Si el resultado contiene "Error", devolver estado de error
+        if (resultado.startsWith("Error:")) {
+            if (resultado.contains("ya existe") || resultado.contains("ya está registrado")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(resultado);
+            }
+            return ResponseEntity.badRequest().body(resultado);
+        }
+        // Si llegamos aquí, el producto se creó exitosamente
+        return ResponseEntity.status(HttpStatus.CREATED).body(resultado);
+
     }
 
     @GetMapping("/{nombreProducto}")
